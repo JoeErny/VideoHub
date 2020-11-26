@@ -4,7 +4,7 @@ import javax.persistence.Column;
 
 public class SampleToCreate {
 
-    public String data;
+    public final String data;
 
     public SampleToCreate(String data) {
         this.data = data;
