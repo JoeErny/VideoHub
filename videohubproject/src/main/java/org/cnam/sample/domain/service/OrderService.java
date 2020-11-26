@@ -34,7 +34,7 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 
-    //Le produit doit-il etre rajouté dans la classe ORDER ou doit il être récupéré de l'ENTITY_ORDER ?
+    //TODO Demander : Le produit doit-il etre rajouté dans la classe ORDER ou doit il être récupéré de l'ENTITY_ORDER ?
     public Order update(Order orderToUpdate) {
 
         OrderModel entityOrderToUpdate = new OrderModel(orderToUpdate.getId(), orderToUpdate.getDate(), orderToUpdate.getPrice(), new UserModel(orderToUpdate.user_id), new VideoModel(orderToUpdate.video_id));
