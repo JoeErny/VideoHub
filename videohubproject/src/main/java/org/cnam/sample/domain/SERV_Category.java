@@ -3,10 +3,8 @@ package org.cnam.sample.domain;
 
 import org.cnam.sample.domain.entity.Category;
 import org.cnam.sample.domain.entity.CategoryToCreate;
-import org.cnam.sample.domain.entity.Video;
 import org.cnam.sample.repository.REP_Category;
 import org.cnam.sample.repository.model.ENTITY_Category;
-import org.cnam.sample.repository.model.ENTITY_Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,20 +26,6 @@ public class SERV_Category {
         ENTITY_Category entityCategoryToCreate = new ENTITY_Category(categoryToCreate.label);
         ENTITY_Category entityCategoryCreated = categoryRepository.save(entityCategoryToCreate);
         return new Category(entityCategoryCreated.getId(), entityCategoryCreated.getLabel());
-    }
-
-    public void deleteById(long id) {
-        try {
-            categoryRepository.deleteById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Category update(Category categoryToUpdate) {
-        ENTITY_Category entityCategoryToUpdate = new ENTITY_Category(categoryToUpdate.id, categoryToUpdate.label);
-        ENTITY_Category entityCategoryUpdated = categoryRepository.save(entityCategoryToUpdate);
-        return new Category(entityCategoryUpdated.getId(), entityCategoryUpdated.getLabel());
     }
 
 }

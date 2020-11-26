@@ -2,13 +2,12 @@ package org.cnam.sample.domain;
 
 import org.cnam.sample.domain.entity.User;
 import org.cnam.sample.domain.entity.UserToCreate;
-import org.cnam.sample.domain.entity.User;
-import org.cnam.sample.domain.entity.UserToCreate;
+import org.cnam.sample.domain.entity.Video;
+import org.cnam.sample.domain.entity.VideoToCreate;
 import org.cnam.sample.repository.REP_User;
-import org.cnam.sample.repository.REP_User;
-import org.cnam.sample.repository.model.ENTITY_Category;
+import org.cnam.sample.repository.REP_Video;
 import org.cnam.sample.repository.model.ENTITY_User;
-import org.cnam.sample.repository.model.ENTITY_User;
+import org.cnam.sample.repository.model.ENTITY_Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +35,6 @@ public class SERV_User {
         userRepository.deleteById(id);
     }
 
-    public User update(User userToUpdate) {
-        ENTITY_User entityUserToUpdate = new ENTITY_User(userToUpdate.id, userToUpdate.name, userToUpdate.firstname, userToUpdate.mail);
-        ENTITY_User entityUserUpdated = userRepository.save(entityUserToUpdate);
-        return new User(entityUserUpdated.getId(), entityUserUpdated.getName(), entityUserUpdated.getFirstname(), entityUserUpdated.getMail());
-    }
+
 
 }
