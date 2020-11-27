@@ -21,19 +21,20 @@ public class UserController {
     public ResponseEntity<UserResponse> getUser(@PathVariable("id") long id) {
         User userFound = userService.getById(id);
 
-        UserResponse userResponse = new UserResponse(userFound.id, userFound.name, userFound.firstname, userFound.mail);
-
+        UserResponse userResponse = new UserResponse(userFound.id, userFound.name, userFound.firstname, userFound.mail, userFound.fidelity_points);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
     @PostMapping("/create")
     @ResponseBody
     public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userToRequest) {
-        UserToCreate userToCreate = new UserToCreate(userToRequest.name,userToRequest.firstname,userToRequest.mail);
+        UserToCreate userToCreate = new UserToCreate(userToRequest.name,userToRequest.firstname,userToRequest.mail,userToRequest.fidelity_points );
 
         User userCreated = userService.create(userToCreate);
 
-        UserResponse userResponse = new UserResponse(userCreated.id, userCreated.name,userCreated.firstname,userCreated.mail);
+        UserResponse userResponse = new UserResponse(userCreated.id, userCreated.name,userCreated.firstname,userCreated.mail, userCreated.fidelity_points);
 
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
+
+    
 }

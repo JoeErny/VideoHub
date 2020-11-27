@@ -18,13 +18,13 @@ public class UserService {
 
     public User getById(Long id) {
         UserModel entityUserFound = userRepository.getOne(id);
-        return new User(entityUserFound.getId(), entityUserFound.getName(), entityUserFound.getFirstname(), entityUserFound.getMail());
+        return new User(entityUserFound.getId(), entityUserFound.getName(), entityUserFound.getFirstname(), entityUserFound.getMail(), entityUserFound.getFidelity_points());
     }
 
     public User create(UserToCreate userToCreate) {
-        UserModel entityUserToCreate = new UserModel(userToCreate.name, userToCreate.firstname, userToCreate.mail);
+        UserModel entityUserToCreate = new UserModel(userToCreate.name, userToCreate.firstname, userToCreate.mail, userToCreate.fidelity_points);
         UserModel entityUserCreated = userRepository.save(entityUserToCreate);
-        return new User(entityUserCreated.getId(), entityUserCreated.getName(), entityUserCreated.getFirstname(), entityUserCreated.getMail());
+        return new User(entityUserCreated.getId(), entityUserCreated.getName(), entityUserCreated.getFirstname(), entityUserCreated.getMail(), entityUserCreated.getFidelity_points());
     }
 
     public void deleteById(Long id) {
@@ -32,9 +32,9 @@ public class UserService {
     }
 
     public User update(User userToUpdate) {
-        UserModel entityUserToUpdate = new UserModel(userToUpdate.id, userToUpdate.name, userToUpdate.firstname, userToUpdate.mail);
+        UserModel entityUserToUpdate = new UserModel(userToUpdate.id, userToUpdate.name, userToUpdate.firstname, userToUpdate.mail, userToUpdate.fidelity_points);
         UserModel entityUserUpdated = userRepository.save(entityUserToUpdate);
-        return new User(entityUserUpdated.getId(), entityUserUpdated.getName(), entityUserUpdated.getFirstname(), entityUserUpdated.getMail());
+        return new User(entityUserUpdated.getId(), entityUserUpdated.getName(), entityUserUpdated.getFirstname(), entityUserUpdated.getMail(), entityUserUpdated.getFidelity_points());
     }
 
 }
