@@ -41,7 +41,4 @@ public class OrderService {
         OrderModel entityOrderUpdated = orderRepository.save(entityOrderToUpdate);
         return new Order(entityOrderUpdated.getId(), entityOrderUpdated.getDate(), entityOrderUpdated.getPrice(), entityOrderUpdated.getUser().getId(), entityOrderUpdated.getVideo().getId());
     }
-
-
-
 }
