@@ -42,4 +42,6 @@ public class CategoryService {
         return new Category(entityCategoryUpdated.getId(), entityCategoryUpdated.getLabel());
     }
 
+
+
 }

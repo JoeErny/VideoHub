@@ -35,4 +35,6 @@ public class CategoryController {
         CategoryResponse categoryResponse = new CategoryResponse(categoryCreated.id, categoryCreated.label);
         return new ResponseEntity<>(categoryResponse, HttpStatus.OK);
     }
+
+
 }

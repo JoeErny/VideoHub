@@ -21,16 +21,20 @@ public class UserModel {
     @Column(name = "fidelity_points")
     private Integer fidelity_points;
 
-    @OneToMany(mappedBy="user")
+    @OneToOne
+    private UserModel sponsor;
+
+    @OneToMany(mappedBy = "user")
     private Set<OrderModel> orders;
 
     public UserModel() {
     }
+
     public UserModel(Long id) {
         this.id = id;
     }
 
-    public UserModel(Long id, String name, String firstname, String mail,  Integer fidelity_points) {
+    public UserModel(Long id, String name, String firstname, String mail, Integer fidelity_points) {
         this.id = id;
         this.name = name;
         this.firstname = firstname;
@@ -38,7 +42,7 @@ public class UserModel {
         this.fidelity_points = fidelity_points;
     }
 
-    public UserModel(String name, String firstname, String mail , Integer fidelity_points) {
+    public UserModel(String name, String firstname, String mail, Integer fidelity_points) {
         this.name = name;
         this.firstname = firstname;
         this.mail = mail;
@@ -91,6 +95,14 @@ public class UserModel {
 
     public void setFidelity_points(Integer fidelity_points) {
         this.fidelity_points = fidelity_points;
+    }
+
+    public UserModel getSponsor() {
+        return sponsor;
+    }
+
+    public void setSponsor(UserModel sponsor) {
+        this.sponsor = sponsor;
     }
 
 }

@@ -25,11 +25,17 @@ public class OrderService {
     }
 
     public Order create(OrderToCreate orderToCreate) {
-
-        OrderModel entityOrderToCreate = new OrderModel( orderToCreate.getDate(), orderToCreate.getPrice(), new UserModel(orderToCreate.getUser_id()), new VideoModel(orderToCreate.getVideo_id()));
-        OrderModel entityOrderCreated = orderRepository.save(entityOrderToCreate);
-        return new Order(entityOrderCreated.getId(), entityOrderCreated.getDate(), entityOrderCreated.getPrice(), entityOrderCreated.getUser().getId(), entityOrderCreated.getVideo().getId());
-    }
+        if(orderToCreate.price>=0)
+        {
+            OrderModel entityOrderToCreate = new OrderModel( orderToCreate.getDate(), orderToCreate.getPrice(), new UserModel(orderToCreate.getUser_id()), new VideoModel(orderToCreate.getVideo_id()));
+            OrderModel entityOrderCreated = orderRepository.save(entityOrderToCreate);
+            return new Order(entityOrderCreated.getId(), entityOrderCreated.getDate(), entityOrderCreated.getPrice(), entityOrderCreated.getUser().getId(), entityOrderCreated.getVideo().getId());
+        }
+        else
+        {
+            return null;
+        }
+  }
     public void deleteById(Long id) {
         orderRepository.deleteById(id);
     }
@@ -41,4 +47,7 @@ public class OrderService {
         OrderModel entityOrderUpdated = orderRepository.save(entityOrderToUpdate);
         return new Order(entityOrderUpdated.getId(), entityOrderUpdated.getDate(), entityOrderUpdated.getPrice(), entityOrderUpdated.getUser().getId(), entityOrderUpdated.getVideo().getId());
     }
+
+
+
 }

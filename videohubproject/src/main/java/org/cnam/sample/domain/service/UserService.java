@@ -37,4 +37,6 @@ public class UserService {
         return new User(entityUserUpdated.getId(), entityUserUpdated.getName(), entityUserUpdated.getFirstname(), entityUserUpdated.getMail(), entityUserUpdated.getFidelity_points());
     }
 
+
+
 }

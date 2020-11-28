@@ -2,6 +2,7 @@ package org.cnam.sample.controller.restcontroller;
 
 import org.cnam.sample.controller.dto.OrderRequest;
 import org.cnam.sample.controller.dto.OrderResponse;
+import org.cnam.sample.domain.service.BuyingService;
 import org.cnam.sample.domain.service.OrderService;
 import org.cnam.sample.domain.entity.Order;
 import org.cnam.sample.domain.entity.OrderToCreate;
@@ -19,6 +20,8 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    BuyingService buyingService;
 
     @Autowired
     UserService userService;
@@ -37,19 +40,16 @@ public class OrderController {
     @ResponseBody
     public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequest orderToRequest) {
 
-
-
         OrderToCreate orderToCreate = new OrderToCreate(orderToRequest.getDate(),orderToRequest.getPrice(), orderToRequest.getUser_id(), orderToRequest.getVideo_id());
 
         Order orderCreated = orderService.create(orderToCreate);
 
         OrderResponse orderResponse = new OrderResponse(orderCreated.getId(), orderCreated.getDate(),orderCreated.getPrice(), orderCreated.getUser_id(), orderCreated.getVideo_id());
 
-
-        //Rajouter des points à l'user en passant par le user controller
-
-
-
+        if(orderResponse.price>0)
+        {
+            buyingService.addFidelityPointsToUserFromPrice(orderResponse.user_id, orderCreated.price);
+        }
 
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }
