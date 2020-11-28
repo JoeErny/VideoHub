@@ -26,6 +26,9 @@ public class OrderModel {
     @JoinColumn(name = "video_id", nullable = true)
     private VideoModel video;
 
+    @Column(name="order_status")
+    private Boolean order_status;
+
     public OrderModel(Long id, Date date, Double price, UserModel user, VideoModel video) {
         this.id = id;
         this.date = date;
@@ -87,5 +90,13 @@ public class OrderModel {
 
     public void setVideo(VideoModel video) {
         this.video = video;
+    }
+
+    public Boolean getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(Boolean order_status) {
+        this.order_status = order_status;
     }
 }

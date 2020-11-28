@@ -21,8 +21,6 @@ public class UserModel {
     @Column(name = "fidelity_points")
     private Integer fidelity_points;
 
-    @OneToOne
-    private UserModel sponsor;
 
     @OneToMany(mappedBy = "user")
     private Set<OrderModel> orders;
@@ -97,12 +95,5 @@ public class UserModel {
         this.fidelity_points = fidelity_points;
     }
 
-    public UserModel getSponsor() {
-        return sponsor;
-    }
-
-    public void setSponsor(UserModel sponsor) {
-        this.sponsor = sponsor;
-    }
 
 }

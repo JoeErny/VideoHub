@@ -19,7 +19,7 @@ public class OrderRequest {
         this.user_id = user_id;
         this.video_id= video_id;
     }
-
+    
     public Date getDate() {
         return date;
     }

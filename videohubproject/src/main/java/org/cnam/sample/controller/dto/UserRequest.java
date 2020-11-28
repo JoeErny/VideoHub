@@ -8,15 +8,12 @@ public class UserRequest {
     public String firstname;
     public String mail;
     public Integer fidelity_points;
-    public Long sponsor_id;
-
 
     @JsonCreator
-    public UserRequest(@JsonProperty("name") String name, @JsonProperty("firstname") String firstname, @JsonProperty("mail") String mail,  @JsonProperty("fidelity_points")Integer fidelity_points, @JsonProperty("sponsor_id") Long sponsor_id) {
+    public UserRequest(@JsonProperty("name") String name, @JsonProperty("firstname") String firstname, @JsonProperty("mail") String mail,  @JsonProperty("fidelity_points")Integer fidelity_points) {
         this.name = name;
         this.firstname = firstname;
         this.mail = mail;
         this.fidelity_points = fidelity_points;
-        this.sponsor_id = sponsor_id;
     }
 }

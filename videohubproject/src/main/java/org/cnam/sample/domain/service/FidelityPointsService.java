@@ -25,6 +25,7 @@ public class FidelityPointsService {
                 pointsToAdd += BONUS;
             }
             user.fidelity_points += pointsToAdd;
+            System.out.print("XXXXXXXXXXXXXXXXXXXUPDATE USER : "+user);
             userService.update(user);
     }
 }

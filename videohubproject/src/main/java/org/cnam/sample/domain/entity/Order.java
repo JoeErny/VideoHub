@@ -9,6 +9,7 @@ public class Order {
     public Double price;
     public Long user_id;
     public Long video_id;
+    public String payment_status;
 
     public Order(Long id, Date date, Double price, Long user_id, Long video_id) {
         this.id = id;
@@ -16,6 +17,8 @@ public class Order {
         this.price = price;
         this.user_id = user_id;
         this.video_id = video_id;
+        this.payment_status = payment_status;
+
     }
 
     public Long getId() {
@@ -56,5 +59,12 @@ public class Order {
 
     public void setVideo_id(Long video_id) {
         this.video_id = video_id;
+    }
+    public String getPayment_status() {
+        return payment_status;
+    }
+
+    public void setPayment_status(String payment_status) {
+        this.payment_status = payment_status;
     }
 }
