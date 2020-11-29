@@ -50,16 +50,9 @@ public class PaymentService {
 
         if(paymentSaved.amount>0)
         {
-            this.addFidelityPointsToUserFromPrice(orderService.getById(paymentSaved.orderId).user_id, paymentSaved.amount);
+            fidelityPointsService.convertPaymentAmountToFidelityPoints(paymentSaved.amount, orderService.getById(paymentSaved.orderId).user_id);
         }
         return paymentSaved;
-    }
-
-    public void addFidelityPointsToUserFromPrice(Long userIdToUpdate, Double amount) {
-        System.out.print("YYYYYYYYYYYYYYYYYYYYYY USER : "+userIdToUpdate + " PRICE : "+amount);
-        Integer pointsToAdd = amount.intValue();
-        User userToGivePoints = userService.getById(userIdToUpdate);
-        fidelityPointsService.addFidelityPointsToUser(pointsToAdd, userToGivePoints);
     }
 
     public String getPaymentStatusOfOrder(Long orderId) {

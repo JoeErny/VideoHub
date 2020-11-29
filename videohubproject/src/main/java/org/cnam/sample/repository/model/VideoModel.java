@@ -20,15 +20,15 @@ public class VideoModel {
     @OneToMany(mappedBy="video")
     private Set<OrderModel> orders;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = true)
+    private CategoryModel category;
+
     public VideoModel(String title, String link, CategoryModel category) {
         this.title = title;
         this.link = link;
         this.category = category;
     }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", nullable = true)
-    private CategoryModel category;
 
     public VideoModel(Long id, String title, String link, CategoryModel category) {
         this.id = id;

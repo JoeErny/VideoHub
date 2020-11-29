@@ -3,14 +3,12 @@ package org.cnam.sample.controller.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CategoryRequest {
+public class BrowsingRequest {
 
-    public String label;
+    public Long categoryId;
 
     @JsonCreator
-    public CategoryRequest(@JsonProperty("label") String label) {
-        this.label = label;
+    public BrowsingRequest(@JsonProperty("category_id") Long category_id) {
+        this.categoryId = category_id;
     }
 }
-
-

@@ -11,21 +11,42 @@ import javax.transaction.Transactional;
 @Transactional
 public class FidelityPointsService {
 
+    public enum BONUSES{
+        HEAVY_PAYMENT_BONUS_STEP(100),
+        HEAVY_PAYMENT_BONUS(10),
+        NEW_MEMBER_BONUS(50),
+        PATRON_BONUS(50);
+
+        private final int value;
+        BONUSES(final int newValue) {
+            value = newValue;
+        }
+        public int getValue() { return value; }
+    }
+
     @Autowired
     private UserService userService;
 
-    private final Integer BONUS_STEP = 100;
-    private final Integer BONUS = 10;
-
-    public void addFidelityPointsToUser(Integer fidelityPointsToGive, User user)
+    public void addFidelityPointsToUser(Integer fidelityPointsToGive, Long userId)
     {
-            Integer pointsToAdd = fidelityPointsToGive;
-            if (fidelityPointsToGive > BONUS_STEP)
-            {
-                pointsToAdd += BONUS;
-            }
-            user.fidelity_points += pointsToAdd;
-            System.out.print("XXXXXXXXXXXXXXXXXXXUPDATE USER : "+user);
+            User user = userService.getById(userId);
+            user.fidelity_points += fidelityPointsToGive;
             userService.update(user);
     }
+
+    public void convertPaymentAmountToFidelityPoints(Double amount, Long userId)
+    {
+        addFidelityPointsToUser(addBonusForHeavyPayment(amount.intValue()), userId);
+    }
+
+    public Integer addBonusForHeavyPayment( Integer fidelityPointsToGive)
+    {
+        if (fidelityPointsToGive > BONUSES.HEAVY_PAYMENT_BONUS_STEP.value)
+        {
+            fidelityPointsToGive += BONUSES.HEAVY_PAYMENT_BONUS.value;
+        }
+        return fidelityPointsToGive;
+    }
+
+
 }

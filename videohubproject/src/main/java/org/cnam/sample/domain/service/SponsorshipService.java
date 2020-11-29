@@ -14,12 +14,20 @@ public class SponsorshipService {
     @Autowired
     private UserService userService;
 
-    public void addFidelityPointsToUserOnInscription(User userToGiveFidelityPoints)
-    {
+    @Autowired
+    private FidelityPointsService fidelityPointsService;
 
-    }
-    public void userSponsorsAnother(User sponsor, User sponsorized)
+
+    public void userSponsorsAnother(Long idSponsoringUser, Long idSponsorizedUser)
     {
+        User sponsoringUser = userService.getById(idSponsoringUser);
+        User sponsorizedUser = userService.getById(idSponsorizedUser);
+
+        if(sponsoringUser.id != null && sponsorizedUser.id != null)
+        {
+            fidelityPointsService.addFidelityPointsToUser(FidelityPointsService.BONUSES.NEW_MEMBER_BONUS.getValue(),sponsorizedUser.id);
+            fidelityPointsService.addFidelityPointsToUser(FidelityPointsService.BONUSES.PATRON_BONUS.getValue(),sponsoringUser.id);
+        }
 
     }
 

@@ -9,9 +9,9 @@ public class Video {
 
     public Long category_id;
 
-    public Video(Long id, String data, String link, Long category_id) {
+    public Video(Long id, String title, String link, Long category_id) {
         this.id = id;
-        this.title = data;
+        this.title = title;
         this.link = link;
         this.category_id=category_id;
     }
