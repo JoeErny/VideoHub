@@ -6,6 +6,7 @@ import org.cnam.sample.domain.service.PaymentService;
 import org.cnam.sample.domain.service.OrderService;
 import org.cnam.sample.domain.entity.Order;
 import org.cnam.sample.domain.entity.OrderToCreate;
+import org.cnam.sample.domain.service.PaymentStatusEnum;
 import org.cnam.sample.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class OrderController {
     public ResponseEntity<OrderResponse> getOrder(@PathVariable("id") long id) {
         Order orderFound = orderService.getById(id);
 
-        OrderResponse orderResponse = new OrderResponse(orderFound.getId(), orderFound.getDate(),orderFound.getPrice(), orderFound.getUser_id(), orderFound.getVideo_id());
+        OrderResponse orderResponse = new OrderResponse(orderFound.getId(), orderFound.getDate(),orderFound.getPrice(), orderFound.getUser_id(), orderFound.getVideo_id(), orderFound.payment_status);
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }
 
@@ -38,7 +39,7 @@ public class OrderController {
 
         Order orderCreated = orderService.create(orderToCreate);
 
-        OrderResponse orderResponse = new OrderResponse(orderCreated.getId(), orderCreated.getDate(),orderCreated.getPrice(), orderCreated.getUser_id(), orderCreated.getVideo_id());
+        OrderResponse orderResponse = new OrderResponse(orderCreated.getId(), orderCreated.getDate(),orderCreated.getPrice(), orderCreated.getUser_id(), orderCreated.getVideo_id(),orderCreated.payment_status);
 
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }

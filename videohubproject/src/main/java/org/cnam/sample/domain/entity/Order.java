@@ -11,7 +11,7 @@ public class Order {
     public Long video_id;
     public String payment_status;
 
-    public Order(Long id, Date date, Double price, Long user_id, Long video_id) {
+    public Order(Long id, Date date, Double price, Long user_id, Long video_id, String payment_status) {
         this.id = id;
         this.date = date;
         this.price = price;

@@ -15,21 +15,20 @@ import javax.transaction.Transactional;
 @Transactional
 public class OrderService {
 
-
     @Autowired
     private OrderRepository orderRepository;
 
     public Order getById(Long id) {
         OrderModel entityOrderFound = orderRepository.getOne(id);
-        return new Order(entityOrderFound.getId(), entityOrderFound.getDate(), entityOrderFound.getPrice(), entityOrderFound.getUser().getId(), entityOrderFound.getVideo().getId());
+        return new Order(entityOrderFound.getId(), entityOrderFound.getDate(), entityOrderFound.getPrice(), entityOrderFound.getUser().getId(), entityOrderFound.getVideo().getId(), entityOrderFound.getOrder_status());
     }
 
     public Order create(OrderToCreate orderToCreate) {
         if(orderToCreate.price>=0)
         {
-            OrderModel entityOrderToCreate = new OrderModel( orderToCreate.getDate(), orderToCreate.getPrice(), new UserModel(orderToCreate.getUser_id()), new VideoModel(orderToCreate.getVideo_id()));
+            OrderModel entityOrderToCreate = new OrderModel( orderToCreate.getDate(), orderToCreate.getPrice(), new UserModel(orderToCreate.getUser_id()), new VideoModel(orderToCreate.getVideo_id()), PaymentStatusEnum.UNPAID.name());
             OrderModel entityOrderCreated = orderRepository.save(entityOrderToCreate);
-            return new Order(entityOrderCreated.getId(), entityOrderCreated.getDate(), entityOrderCreated.getPrice(), entityOrderCreated.getUser().getId(), entityOrderCreated.getVideo().getId());
+            return new Order(entityOrderCreated.getId(), entityOrderCreated.getDate(), entityOrderCreated.getPrice(), entityOrderCreated.getUser().getId(), entityOrderCreated.getVideo().getId(), entityOrderCreated.getOrder_status());
         }
         else
         {
@@ -39,16 +38,10 @@ public class OrderService {
     public void deleteById(Long id) {
         orderRepository.deleteById(id);
     }
-
     //TODO Demander : Le produit doit-il etre rajouté dans la classe ORDER ou doit il être récupéré de l'ENTITY_ORDER ?
     public Order update(Order orderToUpdate) {
-
-        OrderModel entityOrderToUpdate = new OrderModel(orderToUpdate.getId(), orderToUpdate.getDate(), orderToUpdate.getPrice(), new UserModel(orderToUpdate.user_id), new VideoModel(orderToUpdate.video_id));
+        OrderModel entityOrderToUpdate = new OrderModel(orderToUpdate.getId(), orderToUpdate.getDate(), orderToUpdate.getPrice(), new UserModel(orderToUpdate.user_id), new VideoModel(orderToUpdate.video_id), orderToUpdate.payment_status);
         OrderModel entityOrderUpdated = orderRepository.save(entityOrderToUpdate);
-        return new Order(entityOrderUpdated.getId(), entityOrderUpdated.getDate(), entityOrderUpdated.getPrice(), entityOrderUpdated.getUser().getId(), entityOrderUpdated.getVideo().getId());
+        return new Order(entityOrderUpdated.getId(), entityOrderUpdated.getDate(), entityOrderUpdated.getPrice(), entityOrderUpdated.getUser().getId(), entityOrderUpdated.getVideo().getId(), entityOrderToUpdate.getOrder_status());
     }
-
-
-
-
 }

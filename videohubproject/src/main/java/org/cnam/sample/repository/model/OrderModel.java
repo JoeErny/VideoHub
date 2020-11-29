@@ -27,21 +27,23 @@ public class OrderModel {
     private VideoModel video;
 
     @Column(name="order_status")
-    private Boolean order_status;
+    private String order_status;
 
-    public OrderModel(Long id, Date date, Double price, UserModel user, VideoModel video) {
+    public OrderModel(Long id, Date date, Double price, UserModel user, VideoModel video,  String orderStatus) {
         this.id = id;
         this.date = date;
         this.price = price;
         this.user = user;
         this.video = video;
+        this.order_status = orderStatus;
     }
 
-    public OrderModel(Date date, Double price, UserModel user, VideoModel video) {
+    public OrderModel(Date date, Double price, UserModel user, VideoModel video, String orderStatus) {
         this.date = date;
         this.price = price;
         this.user = user;
         this.video = video;
+        this.order_status = orderStatus;
 
     }
 
@@ -92,11 +94,11 @@ public class OrderModel {
         this.video = video;
     }
 
-    public Boolean getOrder_status() {
+    public String getOrder_status() {
         return order_status;
     }
 
-    public void setOrder_status(Boolean order_status) {
+    public void setOrder_status(String order_status) {
         this.order_status = order_status;
     }
 }

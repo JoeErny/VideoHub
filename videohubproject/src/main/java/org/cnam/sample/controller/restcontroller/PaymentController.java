@@ -42,10 +42,7 @@ public class PaymentController {
         PaymentResponse paymentResponse = new PaymentResponse(paymentCreated.getId(), paymentCreated.getOrderId(),paymentCreated.getAmount(), paymentCreated.getDate());
 
 
-//        if(paymentResponse.amount>0)
-//        {
-//            paymentService.addFidelityPointsToUserFromPrice(orderService.getById(paymentResponse.orderId).user_id, paymentResponse.amount);
-//        }
+//
         return new ResponseEntity<>(paymentResponse, HttpStatus.OK);
     }
 
