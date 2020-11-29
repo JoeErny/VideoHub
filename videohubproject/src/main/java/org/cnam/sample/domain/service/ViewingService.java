@@ -2,9 +2,13 @@ package org.cnam.sample.domain.service;
 
 
 import org.cnam.sample.domain.entity.Video;
+import org.cnam.sample.domain.entity.Viewing;
+import org.cnam.sample.domain.entity.ViewingToCreate;
 import org.cnam.sample.repository.VideoRepository;
 import org.cnam.sample.repository.ViewingRepository;
+import org.cnam.sample.repository.model.UserModel;
 import org.cnam.sample.repository.model.VideoModel;
+import org.cnam.sample.repository.model.ViewingModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +34,10 @@ public class ViewingService {
         return viewingRepository.countByVideo(new VideoModel(userId));
     }
 
-
-
+    public Viewing create(ViewingToCreate viewingToCreate)
+    {
+       ViewingModel viewingModelCreated  = viewingRepository.save(new ViewingModel(new UserModel(viewingToCreate.userId), new VideoModel(viewingToCreate.videoId), viewingToCreate.date));
+        return new Viewing(viewingModelCreated.getId(), viewingModelCreated.getUser().getId(), viewingModelCreated.getVideo().getId(), viewingModelCreated.getDate());
+    }
 
 }

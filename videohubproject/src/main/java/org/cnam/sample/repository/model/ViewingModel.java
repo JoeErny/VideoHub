@@ -2,6 +2,7 @@ package org.cnam.sample.repository.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "viewing")
@@ -17,11 +18,14 @@ public class ViewingModel {
     @OneToOne
     private VideoModel video;
 
+    @Column
+    private Date date;
 
-    public ViewingModel(Long id, UserModel userModel, VideoModel video) {
+    public ViewingModel(Long id, UserModel user, VideoModel video, Date date) {
         this.id = id;
         this.user = user;
         this.video = video;
+        this.date = date;
     }
 
     public ViewingModel(Long id) {
@@ -31,9 +35,10 @@ public class ViewingModel {
     public ViewingModel() {
     }
 
-    public ViewingModel(UserModel user, VideoModel video) {
+    public ViewingModel(UserModel user, VideoModel video,Date date) {
         this.user = user;
         this.video = video;
+        this.date = date;
     }
 
     public Long getId() {
@@ -59,6 +64,15 @@ public class ViewingModel {
     public void setVideo(VideoModel video) {
         this.video = video;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 
 
 

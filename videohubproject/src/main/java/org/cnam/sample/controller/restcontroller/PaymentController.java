@@ -38,11 +38,7 @@ public class PaymentController {
 
         PaymentToCreate paymentToCreate = new PaymentToCreate(paymentToRequest.getOrderId(), paymentToRequest.getAmount());
         Payment paymentCreated = paymentService.commitPayment(paymentToCreate);
-
         PaymentResponse paymentResponse = new PaymentResponse(paymentCreated.getId(), paymentCreated.getOrderId(),paymentCreated.getAmount(), paymentCreated.getDate());
-
-
-//
         return new ResponseEntity<>(paymentResponse, HttpStatus.OK);
     }
 

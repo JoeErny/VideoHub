@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class VideoResponse {
 
     public long id;
-
     public String title;
     public String link;
     public Long category_id;

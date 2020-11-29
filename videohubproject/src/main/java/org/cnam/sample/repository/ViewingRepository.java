@@ -10,4 +10,5 @@ public interface ViewingRepository extends JpaRepository<ViewingModel, Long> {
     List<ViewingModel> findAllByVideo(VideoModel video);
     Long countByVideo(VideoModel video);
     Long countByUser(UserModel user);
+
 }
