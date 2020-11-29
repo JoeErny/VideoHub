@@ -20,7 +20,7 @@ public class OrderService {
 
     public Order getById(Long id) {
         OrderModel entityOrderFound = orderRepository.getOne(id);
-        return new Order(entityOrderFound.getId(), entityOrderFound.getDate(), entityOrderFound.getPrice(), entityOrderFound.getUser().getId(), entityOrderFound.getVideo().getId(), entityOrderFound.getOrder_status());
+        return new Order(entityOrderFound.getId(), entityOrderFound.getDate(), entityOrderFound.getPrice(), entityOrderFound.getUser().getId(), entityOrderFound.getVideo().getId(), entityOrderFound.getStatus());
     }
 
     public Order create(OrderToCreate orderToCreate) {
@@ -28,7 +28,7 @@ public class OrderService {
         {
             OrderModel entityOrderToCreate = new OrderModel( orderToCreate.getDate(), orderToCreate.getPrice(), new UserModel(orderToCreate.getUser_id()), new VideoModel(orderToCreate.getVideo_id()), PaymentStatusEnum.UNPAID.name());
             OrderModel entityOrderCreated = orderRepository.save(entityOrderToCreate);
-            return new Order(entityOrderCreated.getId(), entityOrderCreated.getDate(), entityOrderCreated.getPrice(), entityOrderCreated.getUser().getId(), entityOrderCreated.getVideo().getId(), entityOrderCreated.getOrder_status());
+            return new Order(entityOrderCreated.getId(), entityOrderCreated.getDate(), entityOrderCreated.getPrice(), entityOrderCreated.getUser().getId(), entityOrderCreated.getVideo().getId(), entityOrderCreated.getStatus());
         }
         else
         {
@@ -42,6 +42,6 @@ public class OrderService {
     public Order update(Order orderToUpdate) {
         OrderModel entityOrderToUpdate = new OrderModel(orderToUpdate.getId(), orderToUpdate.getDate(), orderToUpdate.getPrice(), new UserModel(orderToUpdate.user_id), new VideoModel(orderToUpdate.video_id), orderToUpdate.payment_status);
         OrderModel entityOrderUpdated = orderRepository.save(entityOrderToUpdate);
-        return new Order(entityOrderUpdated.getId(), entityOrderUpdated.getDate(), entityOrderUpdated.getPrice(), entityOrderUpdated.getUser().getId(), entityOrderUpdated.getVideo().getId(), entityOrderToUpdate.getOrder_status());
+        return new Order(entityOrderUpdated.getId(), entityOrderUpdated.getDate(), entityOrderUpdated.getPrice(), entityOrderUpdated.getUser().getId(), entityOrderUpdated.getVideo().getId(), entityOrderToUpdate.getStatus());
     }
 }

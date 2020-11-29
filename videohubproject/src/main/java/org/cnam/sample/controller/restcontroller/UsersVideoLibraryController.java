@@ -1,12 +1,8 @@
 package org.cnam.sample.controller.restcontroller;
 
-
 import org.cnam.sample.controller.dto.BrowsingResponse;
-import org.cnam.sample.controller.dto.CategoryResponse;
-import org.cnam.sample.domain.entity.Category;
 import org.cnam.sample.domain.entity.Video;
-import org.cnam.sample.domain.service.BrowsingService;
-import org.cnam.sample.domain.service.CategoryService;
+import org.cnam.sample.domain.service.UsersVideoLibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,17 +11,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/browse")
-public class BrowsingController {
-
+@RequestMapping("/library")
+public class UsersVideoLibraryController {
     @Autowired
-    BrowsingService browsingService;
+    UsersVideoLibraryService usersVideoLibraryService;
 
-    @GetMapping("/by_category/{category_id}")
+    @GetMapping("/users_videos/{user_id}")
     @ResponseBody
-    public ResponseEntity<BrowsingResponse> browseVideosByCategoryId(@PathVariable("category_id") long categoryId) {
-        List<Video> videosFound = browsingService.findAllVideosByCategoryId(categoryId);
+    public ResponseEntity<BrowsingResponse> browseVideosByCategoryId(@PathVariable("user_id") long userId) {
+        List<Video> videosFound = usersVideoLibraryService.findAllVideosOwnedByUser(userId);
         BrowsingResponse browsingResponse = new BrowsingResponse(videosFound) ;
         return new ResponseEntity<>(browsingResponse, HttpStatus.OK);
     }
+
 }

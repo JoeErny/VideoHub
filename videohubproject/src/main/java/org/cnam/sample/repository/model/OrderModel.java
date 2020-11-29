@@ -26,24 +26,24 @@ public class OrderModel {
     @JoinColumn(name = "video_id", nullable = true)
     private VideoModel video;
 
-    @Column(name="order_status")
-    private String order_status;
+    @Column(name="status")
+    private String status;
 
-    public OrderModel(Long id, Date date, Double price, UserModel user, VideoModel video,  String orderStatus) {
+    public OrderModel(Long id, Date date, Double price, UserModel user, VideoModel video,  String status) {
         this.id = id;
         this.date = date;
         this.price = price;
         this.user = user;
         this.video = video;
-        this.order_status = orderStatus;
+        this.status = status;
     }
 
-    public OrderModel(Date date, Double price, UserModel user, VideoModel video, String orderStatus) {
+    public OrderModel(Date date, Double price, UserModel user, VideoModel video, String status) {
         this.date = date;
         this.price = price;
         this.user = user;
         this.video = video;
-        this.order_status = orderStatus;
+        this.status = status;
 
     }
 
@@ -94,11 +94,12 @@ public class OrderModel {
         this.video = video;
     }
 
-    public String getOrder_status() {
-        return order_status;
+    public String getStatus() {
+        return status;
     }
 
-    public void setOrder_status(String order_status) {
-        this.order_status = order_status;
+    public void setStatus(String status) {
+        this.status = status;
     }
+
 }

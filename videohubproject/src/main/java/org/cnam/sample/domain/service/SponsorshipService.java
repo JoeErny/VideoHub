@@ -25,7 +25,7 @@ public class SponsorshipService {
 
         if(sponsoringUser.id != null && sponsorizedUser.id != null)
         {
-            fidelityPointsService.addFidelityPointsToUser(FidelityPointsService.BONUSES.NEW_MEMBER_BONUS.getValue(),sponsorizedUser.id);
+            fidelityPointsService.addFidelityPointsToUser(FidelityPointsService.BONUSES.SPONSORED_BONUS.getValue(),sponsorizedUser.id);
             fidelityPointsService.addFidelityPointsToUser(FidelityPointsService.BONUSES.PATRON_BONUS.getValue(),sponsoringUser.id);
         }
 

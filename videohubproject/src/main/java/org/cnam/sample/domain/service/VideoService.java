@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -41,6 +43,17 @@ public class VideoService {
         VideoModel entityVideoToUpdate = new VideoModel(videoToUpdate.id, videoToUpdate.title, videoToUpdate.link, new CategoryModel(videoToUpdate.category_id));
         VideoModel entityVideoUpdated = videoRepository.save(entityVideoToUpdate);
         return new Video(entityVideoUpdated.getId(), entityVideoUpdated.getTitle(), entityVideoUpdated.getLink(), entityVideoUpdated.getCategory().getId());
+    }
+
+    public List<Video> getAll()
+    {
+        List<Video> videosFound = new ArrayList<>();
+        List<VideoModel> videosModelsFound = videoRepository.findAll();
+        for (VideoModel videoModel: videosModelsFound
+             ) {
+            videosFound.add(new Video(videoModel.getId(), videoModel.getTitle(), videoModel.getLink(), videoModel.getCategory().getId()));
+        }
+        return videosFound;
     }
 
 

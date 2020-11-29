@@ -14,7 +14,8 @@ public class FidelityPointsService {
     public enum BONUSES{
         HEAVY_PAYMENT_BONUS_STEP(100),
         HEAVY_PAYMENT_BONUS(10),
-        NEW_MEMBER_BONUS(50),
+        NEW_MEMBER_BONUS(20),
+        SPONSORED_BONUS(50),
         PATRON_BONUS(50);
 
         private final int value;

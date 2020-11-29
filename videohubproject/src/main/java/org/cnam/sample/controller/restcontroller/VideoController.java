@@ -1,6 +1,7 @@
 
 package org.cnam.sample.controller.restcontroller;
 
+import org.cnam.sample.controller.dto.BrowsingResponse;
 import org.cnam.sample.controller.dto.VideoRequest;
 import org.cnam.sample.controller.dto.VideoResponse;
 import org.cnam.sample.controller.dto.VideoUpdateRequest;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/video")
@@ -56,6 +59,14 @@ public class VideoController {
         VideoResponse videoResponse = new VideoResponse(videoUpdated.id, videoUpdated.title, videoUpdated.link, videoUpdated.category_id);
 
         return new ResponseEntity<>(videoResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    @ResponseBody
+    public ResponseEntity<BrowsingResponse> getAll() {
+        List<Video> videosFound = videoService.getAll();
+        BrowsingResponse browsingResponse = new BrowsingResponse(videosFound) ;
+        return new ResponseEntity<>(browsingResponse, HttpStatus.OK);
     }
 
 }

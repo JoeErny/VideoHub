@@ -2,6 +2,7 @@ package org.cnam.sample.domain.service;
 
 import org.cnam.sample.domain.entity.User;
 import org.cnam.sample.domain.entity.UserToCreate;
+import org.cnam.sample.domain.entity.UserToRegister;
 import org.cnam.sample.repository.UserRepository;
 import org.cnam.sample.repository.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public class UserService {
 
     public User create(UserToCreate userToCreate) {
         UserModel entityUserToCreate = new UserModel(userToCreate.name, userToCreate.firstname, userToCreate.mail, userToCreate.fidelity_points);
+        UserModel entityUserCreated = userRepository.save(entityUserToCreate);
+        return new User(entityUserCreated.getId(), entityUserCreated.getName(), entityUserCreated.getFirstname(), entityUserCreated.getMail(), entityUserCreated.getFidelity_points());
+    }
+
+    public User register(UserToRegister userToRegister) {
+        UserModel entityUserToCreate = new UserModel(userToRegister.name, userToRegister.firstname, userToRegister.mail, FidelityPointsService.BONUSES.NEW_MEMBER_BONUS.getValue());
         UserModel entityUserCreated = userRepository.save(entityUserToCreate);
         return new User(entityUserCreated.getId(), entityUserCreated.getName(), entityUserCreated.getFirstname(), entityUserCreated.getMail(), entityUserCreated.getFidelity_points());
     }

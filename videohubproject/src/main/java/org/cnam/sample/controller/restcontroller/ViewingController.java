@@ -7,6 +7,7 @@ import org.cnam.sample.domain.entity.VideoToCreate;
 import org.cnam.sample.domain.entity.Viewing;
 import org.cnam.sample.domain.entity.ViewingToCreate;
 import org.cnam.sample.domain.service.SponsorshipService;
+import org.cnam.sample.domain.service.VideoService;
 import org.cnam.sample.domain.service.ViewingService;
 import org.cnam.sample.repository.ViewingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,13 @@ public class ViewingController {
     @Autowired
     ViewingService viewingService;
 
-    @PostMapping("/create")
+    @Autowired
+    VideoService videoService;
+
+    //Va ajouter un visionnage (une vue) à la vidéo
+    @PostMapping("/add_view")
     @ResponseBody
-    public ResponseEntity<ViewingResponse> createVideo(@RequestBody ViewingRequest viewingRequest) {
+    public ResponseEntity<ViewingResponse> addViewing(@RequestBody ViewingRequest viewingRequest) {
         ViewingToCreate viewingToCreate = new ViewingToCreate(viewingRequest.userId, viewingRequest.videoId, new Date());
         Viewing viewingCreated = viewingService.create(viewingToCreate);
         ViewingResponse viewingResponse = new ViewingResponse(viewingCreated.id, viewingCreated.userId, viewingCreated.videoId, viewingCreated.date);
@@ -35,10 +40,21 @@ public class ViewingController {
 
     @GetMapping("/number_of_views/{video_id}")
     @ResponseBody
-    public ResponseEntity<NumberViewsOfVideo> getVideo(@PathVariable("video_id") long video_id) {
+    public ResponseEntity<NumberViewsOfVideo> getNumberOfViewFromVideo(@PathVariable("video_id") long video_id) {
         Long numberOfViews = viewingService.countByVideoId(video_id);
         NumberViewsOfVideo numberViewsOfVideo = new NumberViewsOfVideo(video_id, numberOfViews);
 
         return new ResponseEntity<>(numberViewsOfVideo, HttpStatus.OK);
+    }
+    //Va ajouter un visionnage à la video et retourner la video
+    @PostMapping("/watch_video")
+    @ResponseBody
+    public ResponseEntity<WatchingResponse> watchVideo(@RequestBody ViewingRequest viewingRequest) {
+        ViewingToCreate viewingToCreate = new ViewingToCreate(viewingRequest.userId, viewingRequest.videoId, new Date());
+        Viewing viewingCreated = viewingService.create(viewingToCreate);
+        Video videoFound = videoService.getById(viewingCreated.videoId);
+
+        WatchingResponse watchingResponse = new WatchingResponse(viewingCreated.id, viewingCreated.userId, viewingCreated.videoId, viewingCreated.date, videoFound.title, videoFound.link, videoFound.category_id);
+        return new ResponseEntity<>(watchingResponse, HttpStatus.OK);
     }
 }
