@@ -3,13 +3,10 @@ package org.cnam.sample.controller.restcontroller;
 
 import org.cnam.sample.controller.dto.*;
 import org.cnam.sample.domain.entity.Video;
-import org.cnam.sample.domain.entity.VideoToCreate;
 import org.cnam.sample.domain.entity.Viewing;
 import org.cnam.sample.domain.entity.ViewingToCreate;
-import org.cnam.sample.domain.service.SponsorshipService;
-import org.cnam.sample.domain.service.VideoService;
-import org.cnam.sample.domain.service.ViewingService;
-import org.cnam.sample.repository.ViewingRepository;
+import org.cnam.sample.domain.service.unitservice.VideoService;
+import org.cnam.sample.domain.service.businessservice.ViewingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

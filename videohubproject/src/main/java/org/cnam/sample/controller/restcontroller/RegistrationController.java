@@ -2,13 +2,11 @@ package org.cnam.sample.controller.restcontroller;
 
 import org.cnam.sample.controller.dto.UserRegistrationRequest;
 import org.cnam.sample.controller.dto.UserRegistrationWithSponsorRequest;
-import org.cnam.sample.controller.dto.UserRequest;
 import org.cnam.sample.controller.dto.UserResponse;
 import org.cnam.sample.domain.entity.User;
-import org.cnam.sample.domain.entity.UserToCreate;
 import org.cnam.sample.domain.entity.UserToRegister;
-import org.cnam.sample.domain.service.SponsorshipService;
-import org.cnam.sample.domain.service.UserService;
+import org.cnam.sample.domain.service.businessservice.SponsorshipService;
+import org.cnam.sample.domain.service.unitservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -2,12 +2,10 @@ package org.cnam.sample.controller.restcontroller;
 
 import org.cnam.sample.controller.dto.OrderRequest;
 import org.cnam.sample.controller.dto.OrderResponse;
-import org.cnam.sample.domain.service.PaymentService;
-import org.cnam.sample.domain.service.OrderService;
+import org.cnam.sample.domain.service.unitservice.OrderService;
 import org.cnam.sample.domain.entity.Order;
 import org.cnam.sample.domain.entity.OrderToCreate;
-import org.cnam.sample.domain.service.PaymentStatusEnum;
-import org.cnam.sample.domain.service.UserService;
+import org.cnam.sample.domain.service.unitservice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

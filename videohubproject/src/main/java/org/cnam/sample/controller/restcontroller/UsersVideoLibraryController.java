@@ -2,7 +2,7 @@ package org.cnam.sample.controller.restcontroller;
 
 import org.cnam.sample.controller.dto.BrowsingResponse;
 import org.cnam.sample.domain.entity.Video;
-import org.cnam.sample.domain.service.UsersVideoLibraryService;
+import org.cnam.sample.domain.service.businessservice.UsersVideoLibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

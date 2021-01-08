@@ -5,7 +5,7 @@ import org.cnam.sample.controller.dto.BrowsingResponse;
 import org.cnam.sample.controller.dto.VideoRequest;
 import org.cnam.sample.controller.dto.VideoResponse;
 import org.cnam.sample.controller.dto.VideoUpdateRequest;
-import org.cnam.sample.domain.service.VideoService;
+import org.cnam.sample.domain.service.unitservice.VideoService;
 import org.cnam.sample.domain.entity.Video;
 import org.cnam.sample.domain.entity.VideoToCreate;
 import org.springframework.beans.factory.annotation.Autowired;

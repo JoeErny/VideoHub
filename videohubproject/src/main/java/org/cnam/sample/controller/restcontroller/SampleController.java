@@ -2,7 +2,7 @@ package org.cnam.sample.controller.restcontroller;
 
 import org.cnam.sample.controller.dto.SampleToCreateRequest;
 import org.cnam.sample.controller.dto.SampleResponse;
-import org.cnam.sample.domain.service.SampleService;
+import org.cnam.sample.domain.service.unitservice.SampleService;
 import org.cnam.sample.domain.entity.Sample;
 import org.cnam.sample.domain.entity.SampleToCreate;
 import org.springframework.beans.factory.annotation.Autowired;

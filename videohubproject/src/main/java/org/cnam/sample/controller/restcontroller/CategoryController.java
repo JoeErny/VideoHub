@@ -2,7 +2,7 @@ package org.cnam.sample.controller.restcontroller;
 
 import org.cnam.sample.controller.dto.CategoryRequest;
 import org.cnam.sample.controller.dto.CategoryResponse;
-import org.cnam.sample.domain.service.CategoryService;
+import org.cnam.sample.domain.service.unitservice.CategoryService;
 import org.cnam.sample.domain.entity.Category;
 import org.cnam.sample.domain.entity.CategoryToCreate;
 import org.springframework.beans.factory.annotation.Autowired;
