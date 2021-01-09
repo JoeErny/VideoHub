@@ -1,4 +1,4 @@
-package org.cnam.sample.controller.restcontroller;
+package org.cnam.sample.controller.restcontroller.business;
 
 import org.cnam.sample.controller.dto.BrowsingResponse;
 import org.cnam.sample.domain.entity.Video;

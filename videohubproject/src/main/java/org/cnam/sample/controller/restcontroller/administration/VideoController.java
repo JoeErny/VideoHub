@@ -1,5 +1,5 @@
 
-package org.cnam.sample.controller.restcontroller;
+package org.cnam.sample.controller.restcontroller.administration;
 
 import org.cnam.sample.controller.dto.BrowsingResponse;
 import org.cnam.sample.controller.dto.VideoRequest;

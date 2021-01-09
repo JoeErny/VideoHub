@@ -1,4 +1,4 @@
-package org.cnam.sample.controller.restcontroller;
+package org.cnam.sample.controller.restcontroller.administration;
 
 import org.cnam.sample.controller.dto.SampleToCreateRequest;
 import org.cnam.sample.controller.dto.SampleResponse;
