@@ -39,7 +39,7 @@ public class PaymentService {
     }
 
     public Payment commitPayment(PaymentToCreate paymentToCreate) {
-        // TODO Est-ce qu'on fait la vérif du paiement accepté par la banque ?
+        // TODO Supprimer cette methode ?
         Order orderConcerned = orderService.getById(paymentToCreate.orderId);
         PaymentModel paymentModelSaved = paymentRepository.save(new PaymentModel(paymentToCreate.amount, new Date(), new OrderModel(paymentToCreate.orderId)));
         Payment paymentSaved =  new Payment(paymentModelSaved.getId(), paymentModelSaved.getOrder().getId(), paymentModelSaved.getAmount(), paymentModelSaved.getDate());
@@ -53,47 +53,10 @@ public class PaymentService {
         return paymentSaved;
     }
 
-
-
-    public Payment commitPaymentNew(PaymentToCreate paymentToCreate) {
+    public Payment createNewPayment(PaymentToCreate paymentToCreate) {
         Order orderConcerned = orderService.getById(paymentToCreate.orderId);
         PaymentModel paymentModelSaved = paymentRepository.save(new PaymentModel(paymentToCreate.amount, new Date(), new OrderModel(paymentToCreate.orderId)));
-        Payment paymentSaved =  new Payment(paymentModelSaved.getId(), paymentModelSaved.getOrder().getId(), paymentModelSaved.getAmount(), paymentModelSaved.getDate());
-
-
-
-        return paymentSaved;
+        return new Payment(paymentModelSaved.getId(), paymentModelSaved.getOrder().getId(), paymentModelSaved.getAmount(), paymentModelSaved.getDate());
     }
-
-
-
-//    public String getPaymentStatusOfOrder(Long orderId) {
-//        Double paymentsTotal = 0.0;
-//        Order orderConcerned = orderService.getById(orderId);
-//        String paymentStatus = orderConcerned.getPayment_status();
-//
-//        List<PaymentModel> listPayments = paymentRepository.findAllByOrder(new OrderModel(orderId));
-//        for (PaymentModel payment : listPayments
-//        )
-//        {
-//            paymentsTotal+=payment.getAmount();
-//        }
-//
-//        if(paymentsTotal >= orderConcerned.getPrice())
-//        {
-//            paymentStatus = PaymentStatusEnum.PAID.name();
-//        }
-//        else if(paymentsTotal<orderConcerned.getPrice())
-//        {
-//            paymentStatus = PaymentStatusEnum.PARTIALLY.name();
-//        }
-//        else
-//        {
-//            paymentStatus = PaymentStatusEnum.UNPAID.name();
-//        }
-//
-//        return paymentStatus;
-//    }
-
 
 }
