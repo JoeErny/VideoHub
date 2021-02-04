@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VIDEOHUB.iml" filepath="$PROJECT_DIR$/VIDEOHUB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../videohubbrowsingservice/videohubbrowsingservice.iml" filepath="$PROJECT_DIR$/../videohubbrowsingservice/videohubbrowsingservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../videohuborchestrator/videohuborchestrator.iml" filepath="$PROJECT_DIR$/../videohuborchestrator/videohuborchestrator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../videohubsponsorshipservice/videohubsponsorshipservice.iml" filepath="$PROJECT_DIR$/../videohubsponsorshipservice/videohubsponsorshipservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../viodehuborderpurchase/viodehuborderpurchase.iml" filepath="$PROJECT_DIR$/../viodehuborderpurchase/viodehuborderpurchase.iml" />
     </modules>
   </component>
 </project>
